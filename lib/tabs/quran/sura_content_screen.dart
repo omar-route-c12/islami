@@ -13,7 +13,6 @@ class SuraContentScreen extends StatefulWidget {
 
 class _SuraContentScreenState extends State<SuraContentScreen> {
   List<String> ayat = [];
-
   late SuraContentArgs args;
 
   @override
