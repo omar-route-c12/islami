@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami/app_theme.dart';
 import 'package:islami/tabs/quran/quran_tab.dart';
+import 'package:islami/tabs/settings/settings_provider.dart';
 import 'package:islami/widgets/loading_indicator.dart';
+import 'package:provider/provider.dart';
 
 class SuraContentScreen extends StatefulWidget {
   static const String routeName = '/sura-content';
@@ -21,11 +23,14 @@ class _SuraContentScreenState extends State<SuraContentScreen> {
     if (ayat.isEmpty) {
       loadSuraFile();
     }
+    SettingsProvider settingsProvider = Provider.of<SettingsProvider>(context);
 
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/images/default_bg.png'),
+          image: AssetImage(
+            'assets/images/${settingsProvider.backgroundImageName}.png',
+          ),
           fit: BoxFit.fill,
         ),
       ),
@@ -40,7 +45,8 @@ class _SuraContentScreenState extends State<SuraContentScreen> {
             horizontal: 24,
           ),
           decoration: BoxDecoration(
-            color: AppTheme.white,
+            color:
+                settingsProvider.isDark ? AppTheme.darkPrimary : AppTheme.white,
             borderRadius: BorderRadius.circular(25),
           ),
           child: ayat.isEmpty
