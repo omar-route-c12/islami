@@ -14,6 +14,7 @@ class SettingsProvider with ChangeNotifier {
   }
 
   void changeLanguage(String selectedLanguage) {
+    if (selectedLanguage == languageCode) return;
     languageCode = selectedLanguage;
     notifyListeners();
   }
